@@ -19,6 +19,10 @@ const SingleDepartment = () => {
     updated_date: "",
   });
 
+  const[parentName, SetParentName] = useState({
+    parent_name:""
+  });
+
   useEffect(() => {
     DepartmentAPI.getDepartmentById(departmentid).then((res) => {
       let dpt = res.data;
@@ -30,8 +34,21 @@ const SingleDepartment = () => {
         created_date: dpt.createDate,
         updated_date: dpt.updateDate,
       });
-    });
-  }, []);
+      let parentid = department.dept_parent;
+      getDepartementName(parentid);
+  }, [departmentid])});
+
+  function getDepartementName(parentid){
+      DepartmentAPI.getDepartmentById(parentid).then((resp) => {
+        if(resp.data){
+          let dptp = resp.data;
+          SetParentName({
+            parent_name: dptp.dept_name,
+          });
+        }
+      
+      })
+  }
 
   return (
     <div className="single">
@@ -61,7 +78,7 @@ const SingleDepartment = () => {
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Departement Parent:</span>
-                  <span className="itemValue">{department.dept_parent}</span>
+                  <span className="itemValue">{parentName.parent_name}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Created Date:</span>
