@@ -12,13 +12,13 @@
       padding: 10px;
       margin: 20px;
       display: flex;
-
+    
       h1 {
         color: lightgray;
         font-size: 20px;
       }
 
-      .left {
+      .right{
         flex: 1;
         text-align: center;
 
@@ -30,17 +30,17 @@
         }
       }
 
-      .right {
+      .left {
         flex: 2;
 
-        form {
-          display: flex;
+         form {
+          display: grid;
           flex-wrap: wrap;
           gap: 30px;
           justify-content: space-around;
 
           .formInput {
-            width: 40%;
+            width: 60%;
 
             label {
               display: flex;
@@ -70,7 +70,7 @@
             cursor: pointer;
             margin-top: 10px;
           }
-        }
+        } 
       }
     }
   }

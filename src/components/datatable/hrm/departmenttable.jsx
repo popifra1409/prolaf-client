@@ -3,13 +3,15 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { departementColumns } from "../../../pages/hrm/department/departmenttablesource";
-import client from "../../../services/configs/apiClient";
 import DepartmentAPI from "../../../services/hrm/departmentAPI";
 
 const DepartmentDatatable = () => {
   const [pageSize, setPageSize] = useState(10);
   const [departements, setDepartments] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  //deleting a record
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -19,14 +21,21 @@ const DepartmentDatatable = () => {
     setLoading(false);
   }, []);
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     setDepartments(departements.filter((item) => item.id !== id));
+    try {
+      const response = await DepartmentAPI.deleteDepartment(id);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   };
 
   const actionColumn = [
     {
       field: "action",
-      headerName: "Action",
+      headerName: "ACTION",
       width: 200,
       renderCell: (params) => {
         return (
@@ -40,6 +49,7 @@ const DepartmentDatatable = () => {
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
+              //onClick={() => setShowDeleteConfirmation(true)}
             >
               Delete
             </div>
@@ -51,8 +61,8 @@ const DepartmentDatatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New User
-        <Link to="/departments/new" className="link">
+        MANAGE DEPARTMENT
+        <Link to="/hrm/departments/newdepartment" className="link">
           Add New
         </Link>
       </div>

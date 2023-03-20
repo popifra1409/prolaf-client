@@ -1,5 +1,5 @@
 .app.dark {
-  background-color: #111;
+  background-color: #111111;
   color: rgb(156, 156, 156);
 
   .chartGrid {
@@ -48,6 +48,14 @@
       }
     }
   }
+/* 
+.new .newContainer .top, .new .newContainer .bottom {
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  padding: 10px;
+  margin: 20px;
+  display: flex;
+  background-color: rgba(162, 171, 209, 0.801);
+} */
 
   .datatable {
     .datagrid {
@@ -74,7 +82,8 @@
     }
   }
 
-  input {
-    background-color: transparent;
-  }
+    input {
+      background-color: #e7e4e4;
+      border-bottom: 1px solid rgb(22, 1, 1);
+    }
 }

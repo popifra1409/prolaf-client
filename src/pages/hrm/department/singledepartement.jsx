@@ -5,6 +5,7 @@ import Chart from "../../../components/chart/Chart";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DepartmentAPI from "../../../services/hrm/departmentAPI";
+import { Link } from "react-router-dom";
 
 const SingleDepartment = () => {
   const { departmentid } = useParams();
@@ -57,15 +58,18 @@ const SingleDepartment = () => {
         <Navbar />
         <div className="top">
           <div className="left">
-            <div className="editButton">Edit</div>
+            <div className="editButton">
+              <Link
+                to={`/hrm/departments/update/${departmentid}/`}
+                style={{ textDecoration: "none" }}
+              >
+                Edit
+              </Link>
+            </div>
             <h1 className="title">Department details:</h1>
             <div className="item">
               <div className="details">
-                {/* <h1 className="itemTitle">Jane Doe</h1> */}
-                <div className="detailItem">
-                  <span className="itemKey">Departement Name:</span>
-                  <span className="itemValue">{department.dept_name}</span>
-                </div>
+                <h1 className="itemTitle">{department.dept_name}</h1>
                 <div className="detailItem">
                   <span className="itemKey">Description:</span>
                   <span className="itemValue">

@@ -8,14 +8,30 @@ class DepartmentAPI {
     return await axios.get(DEPARTMENT_BASE_URL);
   };
 
-  //add a new depart
-  addDepartment = async (department) => {
-    return await axios.post(DEPARTMENT_BASE_URL, department);
+  //add a new department
+  addDepartment = async (department, departmentId) => {
+    return await axios.post(
+      DEPARTMENT_BASE_URL + departmentId + "/create/",
+      department
+    );
+  };
+
+  //update a department
+  updateDepartment = async (department, departmentId) => {
+    return await axios.put(
+      DEPARTMENT_BASE_URL + departmentId + "/update/",
+      department
+    );
   };
 
   //get a single departement
   getDepartmentById = async (departmentId) => {
     return await axios.get(DEPARTMENT_BASE_URL + departmentId + "/");
+  };
+
+  //delete a departement
+  deleteDepartment = async (departmentId) => {
+    return await axios.delete(DEPARTMENT_BASE_URL + departmentId + "/delete/");
   };
 }
 export default new DepartmentAPI();
